@@ -1,0 +1,42 @@
+# .gitignore
+
+# 后端
+backend/.env
+backend/tmp/
+backend/*.exe
+backend/*.exe~
+backend/*.dll
+backend/*.so
+backend/*.dylib
+backend/*.test
+backend/*.out
+backend/vendor/
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+frontend/*.log
+frontend/npm-debug.log*
+
+# 管理系统
+admin/node_modules/
+admin/dist/
+admin/.DS_Store
+admin/*.log
+admin/npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 数据库
+*.sql
+!init.sql

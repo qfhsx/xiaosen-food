@@ -1,0 +1,23 @@
+# 健康检查
+FROM golang:1.21-alpine
+
+WORKDIR /app
+
+# 复制并构建
+COPY . .
+RUN go mod download && go build -o healthcheck cmd/main.go
+
+# 使用轻量级镜像
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /app
+COPY --from=0 /app/healthcheck .
+
+# 等待MySQL就绪的脚本
+RUN echo '#!/bin/sh\nwhile ! nc -z mysql 3306; do\n  echo "Waiting for MySQL..."\n  sleep 1\ndone\necho "MySQL is ready!"\n./healthcheck' > /app/start.sh && chmod +x /app/start.sh
+
+RUN apk add --no-cache netcat-openbsd
+
+EXPOSE 8080
+
+CMD ["/app/start.sh"]
