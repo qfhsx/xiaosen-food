@@ -220,16 +220,17 @@ onMounted(() => {
 .cyber-select { width: 150px; }
 .cyber-select :deep(.el-input__wrapper) { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 212, 255, 0.2); }
 
-/* Table 深色系 */
-:deep(.cyber-table) { background: transparent !important; }
+/* Table 深色系 - 完全覆盖 */
+:deep(.cyber-table) { background: transparent !important; --el-table-bg-color: transparent !important; --el-table-header-bg-color: rgba(0, 0, 0, 0.4) !important; --el-table-row-hover-bg-color: rgba(0, 212, 255, 0.08) !important; }
 :deep(.cyber-table .el-table__header-wrapper) { background: transparent !important; }
 :deep(.cyber-table .el-table__body-wrapper) { background: transparent !important; }
-:deep(.cyber-table th.el-table__cell) { background: rgba(0, 212, 255, 0.08) !important; color: rgba(255, 255, 255, 0.6) !important; border-bottom: 1px solid rgba(0, 212, 255, 0.15) !important; }
-:deep(.cyber-table td.el-table__cell) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.08) !important; color: rgba(255, 255, 255, 0.85) !important; }
-:deep(.cyber-table tr:hover > td.el-table__cell) { background: rgba(0, 212, 255, 0.08) !important; }
+:deep(.cyber-table th.el-table__cell) { background: rgba(0, 0, 0, 0.5) !important; color: rgba(255, 255, 255, 0.8) !important; border-bottom: 1px solid rgba(0, 212, 255, 0.2) !important; font-weight: 600; }
+:deep(.cyber-table td.el-table__cell) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.1) !important; color: rgba(255, 255, 255, 0.9) !important; }
+:deep(.cyber-table tr:hover > td.el-table__cell) { background: rgba(0, 212, 255, 0.1) !important; }
 :deep(.cyber-table .el-table__body tr) { background: transparent !important; }
-:deep(.cyber-table .el-table__body tr:nth-child(even)) { background: rgba(0, 212, 255, 0.02) !important; }
+:deep(.cyber-table .el-table__body tr:nth-child(even)) { background: rgba(0, 212, 255, 0.03) !important; }
 :deep(.cyber-table .el-table__inner-wrapper::before) { display: none; }
+:deep(.cyber-table .cell) { color: inherit; }
 
 .index-num { font-family: monospace; color: rgba(255, 255, 255, 0.3); }
 .food-image-small { width: 60px; height: 60px; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2); }
@@ -248,8 +249,19 @@ onMounted(() => {
 .action-btn { font-size: 0.85rem; }
 
 .pagination { margin-top: 20px; display: flex; justify-content: flex-end; }
-:deep(.el-pagination) { color: rgba(255, 255, 255, 0.6); }
-:deep(.el-pagination .el-pager li) { background: transparent; }
-:deep(.el-pagination .el-pager li.active) { background: rgba(0, 212, 255, 0.2); color: #00D4FF; }
-:deep(.el-pagination button) { background: transparent; color: rgba(255, 255, 255, 0.6); }
+/* 分页器深色系 */
+:deep(.el-pagination) { color: rgba(255, 255, 255, 0.8) !important; --el-pagination-bg-color: transparent !important; --el-pagination-button-bg-color: transparent !important; }
+:deep(.el-pagination .el-pager li) { background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 212, 255, 0.2) !important; color: rgba(255, 255, 255, 0.8) !important; }
+:deep(.el-pagination .el-pager li:hover) { background: rgba(0, 212, 255, 0.15) !important; color: #00D4FF !important; }
+:deep(.el-pagination .el-pager li.active) { background: rgba(0, 212, 255, 0.25) !important; border-color: #00D4FF !important; color: #00D4FF !important; }
+:deep(.el-pagination button) { background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 212, 255, 0.2) !important; color: rgba(255, 255, 255, 0.8) !important; }
+:deep(.el-pagination button:hover) { background: rgba(0, 212, 255, 0.15) !important; color: #00D4FF !important; }
+:deep(.el-pagination button:disabled) { background: rgba(0, 0, 0, 0.1) !important; color: rgba(255, 255, 255, 0.3) !important; border-color: rgba(0, 212, 255, 0.05) !important; }
+:deep(.el-pagination__total) { color: rgba(255, 255, 255, 0.6) !important; }
+:deep(.el-pagination__sizes) { color: rgba(255, 255, 255, 0.6) !important; }
+:deep(.el-pagination__sizes .el-input__wrapper) { background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 212, 255, 0.2) !important; }
+:deep(.el-pagination__sizes .el-input__inner) { color: rgba(255, 255, 255, 0.8) !important; }
+:deep(.el-pagination__jump) { color: rgba(255, 255, 255, 0.6) !important; }
+:deep(.el-pagination__jump .el-input__wrapper) { background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 212, 255, 0.2) !important; }
+:deep(.el-pagination__jump .el-input__inner) { color: #fff !important; }
 </style>

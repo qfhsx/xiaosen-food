@@ -241,10 +241,19 @@ onMounted(() => {
 .header-title .icon { color: #00D4FF; }
 .cyber-btn-text { color: #00D4FF !important; font-size: 0.85rem; }
 
-.cyber-table { background: transparent; }
-:deep(.cyber-table th) { background: rgba(0, 212, 255, 0.05) !important; color: rgba(255, 255, 255, 0.5); font-weight: 500; border-bottom: 1px solid rgba(0, 212, 255, 0.1); }
-:deep(.cyber-table td) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.05); color: rgba(255, 255, 255, 0.8); }
-:deep(.cyber-table tr:hover td) { background: rgba(0, 212, 255, 0.05) !important; }
+.cyber-card { background: linear-gradient(135deg, rgba(18, 18, 26, 0.95), rgba(13, 13, 20, 0.98)) !important; border: 1px solid rgba(0, 212, 255, 0.1) !important; }
+
+/* Table 深色系 - 完全覆盖 */
+:deep(.cyber-table) { background: transparent !important; --el-table-bg-color: transparent !important; --el-table-header-bg-color: rgba(0, 0, 0, 0.4) !important; --el-table-row-hover-bg-color: rgba(0, 212, 255, 0.08) !important; }
+:deep(.cyber-table .el-table__header-wrapper) { background: transparent !important; }
+:deep(.cyber-table .el-table__body-wrapper) { background: transparent !important; }
+:deep(.cyber-table th.el-table__cell) { background: rgba(0, 0, 0, 0.5) !important; color: rgba(255, 255, 255, 0.8) !important; border-bottom: 1px solid rgba(0, 212, 255, 0.2) !important; font-weight: 600; }
+:deep(.cyber-table td.el-table__cell) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.1) !important; color: rgba(255, 255, 255, 0.9) !important; }
+:deep(.cyber-table tr:hover > td.el-table__cell) { background: rgba(0, 212, 255, 0.1) !important; }
+:deep(.cyber-table .el-table__body tr) { background: transparent !important; }
+:deep(.cyber-table .el-table__body tr:nth-child(even)) { background: rgba(0, 212, 255, 0.03) !important; }
+:deep(.cyber-table .el-table__inner-wrapper::before) { display: none; }
+:deep(.cyber-table .cell) { color: inherit; }
 
 .index-num { font-family: monospace; color: rgba(255, 255, 255, 0.3); }
 .food-name-cell { display: flex; align-items: center; gap: 8px; }
