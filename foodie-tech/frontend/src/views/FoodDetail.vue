@@ -7,14 +7,32 @@
     </div>
 
     <div v-if="food" class="detail-container">
-      <!-- 图片区域 -->
-      <div class="image-section">
-        <div class="image-wrapper">
-          <img 
-            :src="food.image || defaultImage" 
-            :alt="food.name" 
-            class="main-image"
-          />
+      <!-- 视频/图片区域 -->
+      <div class="media-section">
+        <div class="media-wrapper">
+          <!-- 有视频时显示视频 -->
+          <template v-if="food.video_url">
+            <video 
+              ref="videoPlayer"
+              class="main-video"
+              controls
+              preload="metadata"
+              :poster="food.image || defaultImage"
+              @click="togglePlay"
+            >
+              <source :src="food.video_url" type="video/mp4" />
+              <p>您的浏览器不支持视频播放</p>
+            </video>
+            <div class="video-label">📹 视频教程</div>
+          </template>
+          <!-- 无视频时显示图片 -->
+          <template v-else>
+            <img 
+              :src="food.image || defaultImage" 
+              :alt="food.name" 
+              class="main-image"
+            />
+          </template>
           <div v-if="food.is_featured" class="feature-tag">👍 推荐菜品</div>
         </div>
       </div>
@@ -134,6 +152,8 @@ const router = useRouter()
 const food = ref<any>(null)
 const isFavorite = ref(false)
 const showAddSuccess = ref(false)
+const videoPlayer = ref<HTMLVideoElement | null>(null)
+const isPlaying = ref(false)
 
 const defaultImage = 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&h=400&fit=crop'
 
@@ -198,6 +218,18 @@ const addToCart = async () => {
   }
 }
 
+// 视频播放控制
+const togglePlay = () => {
+  if (!videoPlayer.value) return
+  if (videoPlayer.value.paused) {
+    videoPlayer.value.play()
+    isPlaying.value = true
+  } else {
+    videoPlayer.value.pause()
+    isPlaying.value = false
+  }
+}
+
 onMounted(() => {
   fetchFoodDetail()
 })
@@ -251,14 +283,15 @@ onMounted(() => {
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
-/* 图片区域 */
-.image-section {
+/* 媒体区域（图片/视频） */
+.media-section {
   position: relative;
 }
 
-.image-wrapper {
+.media-wrapper {
   position: relative;
   overflow: hidden;
+  background: #000;
 }
 
 .main-image {
@@ -266,6 +299,27 @@ onMounted(() => {
   height: 350px;
   object-fit: cover;
   display: block;
+}
+
+.main-video {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.video-label {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
 }
 
 .feature-tag {

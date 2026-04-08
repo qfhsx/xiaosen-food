@@ -11,6 +11,7 @@ type Food struct {
 	Name        string         `gorm:"size:100;not null" json:"name"`
 	Description string         `gorm:"type:text" json:"description"`
 	Image       string         `gorm:"size:500" json:"image"`
+	VideoURL    string         `gorm:"size:500" json:"video_url"` // 视频教程链接
 	CategoryID  uint           `json:"category_id"`
 	Category    Category       `json:"category,omitempty"`
 	Meals       string         `gorm:"type:json" json:"meals"` // ["breakfast", "lunch", "dinner"]

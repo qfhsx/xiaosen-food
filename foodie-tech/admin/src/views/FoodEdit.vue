@@ -49,6 +49,20 @@
           </div>
         </el-form-item>
 
+        <el-form-item label="视频教程" prop="video_url">
+          <el-input v-model="form.video_url" placeholder="视频URL地址（支持 YouTube、B站嵌入链接或直接视频文件URL）" class="cyber-input">
+            <template #append>
+              <el-button class="preview-btn" @click="previewVideo">预览</el-button>
+            </template>
+          </el-input>
+          <div class="video-tips">
+            <small>💡 支持：YouTube、B站、抖音等视频链接，或直接上传视频文件URL</small>
+          </div>
+          <div v-if="form.video_url" class="video-preview">
+            <video :src="form.video_url" controls preload="metadata" :poster="form.image"></video>
+          </div>
+        </el-form-item>
+
         <el-form-item label="评分" prop="rating">
           <el-rate v-model="form.rating" show-score class="cyber-rate" />
         </el-form-item>
@@ -117,6 +131,7 @@ const form = reactive({
   category_id: '',
   meals: ['lunch', 'dinner'],
   image: '',
+  video_url: '',
   rating: 4,
   ingredients: '',
   seasonings: '',
@@ -153,6 +168,12 @@ const fetchFood = async () => {
 const previewImage = () => {
   if (!form.image) {
     ElMessage.warning('请先输入图片地址')
+  }
+}
+
+const previewVideo = () => {
+  if (!form.video_url) {
+    ElMessage.warning('请先输入视频地址')
   }
 }
 
@@ -215,6 +236,10 @@ onMounted(() => {
 
 .image-preview { margin-top: 12px; width: 200px; height: 150px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0, 212, 255, 0.2); }
 .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+.video-tips { margin-top: 8px; color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; }
+.video-preview { margin-top: 12px; width: 100%; max-width: 400px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0, 212, 255, 0.2); }
+.video-preview video { width: 100%; height: auto; display: block; }
 
 .cyber-rate :deep(.el-rate__icon) { font-size: 1.5rem; }
 .cyber-rate :deep(.el-rate__text) { color: #FFB800; }
