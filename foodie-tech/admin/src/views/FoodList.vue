@@ -209,7 +209,9 @@ onMounted(() => {
 .cyber-btn { background: linear-gradient(135deg, #00D4FF, #0099CC); border: none; }
 .cyber-btn-secondary { background: transparent; border: 1px solid rgba(0, 212, 255, 0.3); color: rgba(255, 255, 255, 0.7); }
 
-.cyber-card { background: linear-gradient(135deg, rgba(18, 18, 26, 0.8), rgba(13, 13, 20, 0.9)); border: 1px solid rgba(0, 212, 255, 0.1); }
+/* Card 深色系 */
+:deep(.cyber-card) { background: linear-gradient(135deg, rgba(18, 18, 26, 0.95), rgba(13, 13, 20, 0.98)) !important; border: 1px solid rgba(0, 212, 255, 0.1) !important; }
+:deep(.cyber-card .el-card__body) { background: transparent !important; }
 
 .filter-bar { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .cyber-input { width: 250px; }
@@ -218,10 +220,16 @@ onMounted(() => {
 .cyber-select { width: 150px; }
 .cyber-select :deep(.el-input__wrapper) { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 212, 255, 0.2); }
 
-.cyber-table { background: transparent; }
-:deep(.cyber-table th) { background: rgba(0, 212, 255, 0.05) !important; color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgba(0, 212, 255, 0.1); }
-:deep(.cyber-table td) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.05); color: rgba(255, 255, 255, 0.8); }
-:deep(.cyber-table tr:hover td) { background: rgba(0, 212, 255, 0.05) !important; }
+/* Table 深色系 */
+:deep(.cyber-table) { background: transparent !important; }
+:deep(.cyber-table .el-table__header-wrapper) { background: transparent !important; }
+:deep(.cyber-table .el-table__body-wrapper) { background: transparent !important; }
+:deep(.cyber-table th.el-table__cell) { background: rgba(0, 212, 255, 0.08) !important; color: rgba(255, 255, 255, 0.6) !important; border-bottom: 1px solid rgba(0, 212, 255, 0.15) !important; }
+:deep(.cyber-table td.el-table__cell) { background: transparent !important; border-bottom: 1px solid rgba(0, 212, 255, 0.08) !important; color: rgba(255, 255, 255, 0.85) !important; }
+:deep(.cyber-table tr:hover > td.el-table__cell) { background: rgba(0, 212, 255, 0.08) !important; }
+:deep(.cyber-table .el-table__body tr) { background: transparent !important; }
+:deep(.cyber-table .el-table__body tr:nth-child(even)) { background: rgba(0, 212, 255, 0.02) !important; }
+:deep(.cyber-table .el-table__inner-wrapper::before) { display: none; }
 
 .index-num { font-family: monospace; color: rgba(255, 255, 255, 0.3); }
 .food-image-small { width: 60px; height: 60px; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.2); }
